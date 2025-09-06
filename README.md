@@ -20,7 +20,7 @@
 
 ## About
 
-Recovery Protocol is a modern mobile application built with Flutter, designed to support athletes—whether competitive or fitness-focused—with AI-infused, personalized recovery plans. The app aims to bring scientific recovery guidance right into your pocket. ([GitHub][1])
+Recovery Protocol is a modern mobile application built with Flutter, designed to support athletes—whether competitive or fitness-focused—with AI-infused, personalized recovery plans. The app aims to bring scientific recovery guidance right into your pocket. 
 
 ---
 
@@ -32,7 +32,7 @@ Make sure your development environment includes:
 * Dart SDK
 * Android Studio or VS Code with Flutter extensions
 * Android SDK (for Android builds)
-* Xcode (for iOS builds) ([GitHub][1])
+* Xcode (for iOS builds) 
 
 ---
 
@@ -46,7 +46,7 @@ flutter pub get
 flutter run
 ```
 
-That’s it—simple and straightforward! ([GitHub][1])
+That’s it—simple and straightforward! 
 
 ---
 
@@ -72,7 +72,7 @@ flutter_app/
 └── README.md               # Project documentation (this file)
 ```
 
-([GitHub][1])
+
 
 ---
 
@@ -95,7 +95,7 @@ class AppRoutes {
 }
 ```
 
-([GitHub][1])
+
 
 ---
 
@@ -112,7 +112,7 @@ class AppRoutes {
   )
   ```
 
-([GitHub][1])
+
 
 ---
 
@@ -130,7 +130,7 @@ flutter build apk --release
 flutter build ios --release
 ```
 
-([GitHub][1])
+
 
 ---
 
@@ -146,5 +146,5 @@ flutter build ios --release
 
 ## Acknowledgments
 
-* Built using **Flutter** by Google and **Dart** language ([GitHub][1])
-* Project scaffolding powered by **Rocket.new** ([GitHub][1])
+* Built using **Flutter** by Google and **Dart** language 
+* Project scaffolding powered by **Rocket.new** 
