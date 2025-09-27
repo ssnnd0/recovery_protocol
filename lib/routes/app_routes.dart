@@ -7,7 +7,6 @@ import '../presentation/user_profile_settings/user_profile_settings.dart';
 import '../presentation/guided_workout_player/guided_workout_player.dart';
 
 class AppRoutes {
-  // TODO: Add your routes here
   static const String initial = '/';
   static const String progressAnalyticsDashboard =
       '/progress-analytics-dashboard';
@@ -25,6 +24,5 @@ class AppRoutes {
     exerciseLibrary: (context) => const ExerciseLibrary(),
     userProfileSettings: (context) => const UserProfileSettings(),
     guidedWorkoutPlayer: (context) => const GuidedWorkoutPlayer(),
-    // TODO: Add your other routes here
   };
 }

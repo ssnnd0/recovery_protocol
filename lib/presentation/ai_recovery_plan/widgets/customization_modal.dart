@@ -226,7 +226,7 @@ class _CustomizationModalState extends State<CustomizationModal> {
             _preferences[preference] = value;
           });
         },
-        activeColor: theme.colorScheme.primary,
+        activeThumbColor: theme.colorScheme.primary,
         contentPadding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
       ),
     );

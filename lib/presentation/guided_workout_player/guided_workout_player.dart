@@ -22,7 +22,6 @@ class _GuidedWorkoutPlayerState extends State<GuidedWorkoutPlayer>
   int _currentExerciseIndex = 0;
   bool _isPlaying = false;
   bool _isResting = false;
-  Duration _elapsedTime = Duration.zero;
   Duration _sessionStartTime = Duration.zero;
 
   // Mock workout data

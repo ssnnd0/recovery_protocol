@@ -9,6 +9,7 @@ import './widgets/settings_section_widget.dart';
 import './widgets/subscription_card_widget.dart';
 import './widgets/toggle_settings_item_widget.dart';
 import './widgets/user_header_widget.dart';
+import '../../widgets/radio_group.dart';
 
 class UserProfileSettings extends StatefulWidget {
   const UserProfileSettings({super.key});
@@ -337,14 +338,10 @@ class _UserProfileSettingsState extends State<UserProfileSettings> {
 
   void _editSportPreferences() {
     final List<String> sports = [
-      "Swimming",
       "Running",
+      "Swimming",
       "Cycling",
-      "Triathlon",
       "CrossFit",
-      "Basketball",
-      "Soccer",
-      "Tennis",
       "Weightlifting",
       "Other"
     ];
@@ -358,32 +355,22 @@ class _UserProfileSettingsState extends State<UserProfileSettings> {
         ),
         content: SizedBox(
           width: double.maxFinite,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: sports.length,
-            itemBuilder: (context, index) {
-              final sport = sports[index];
-              final isSelected = userData["sport"] == sport;
-              return ListTile(
-                title: Text(sport),
-                leading: Radio<String>(
-                  value: sport,
-                  groupValue: userData["sport"] as String?,
-                  onChanged: (value) {
-                    setState(() {
-                      userData["sport"] = value;
-                    });
-                    Navigator.pop(context);
-                  },
-                ),
-              );
+          child: CustomRadioGroup<String>(
+            value: userData["sport"] as String? ?? sports[0],
+            items: sports,
+            onChanged: (value) {
+              setState(() {
+                userData["sport"] = value;
+              });
+              Navigator.pop(context);
             },
+            itemBuilder: (sport) => Text(sport),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
         ],
       ),
@@ -405,28 +392,21 @@ class _UserProfileSettingsState extends State<UserProfileSettings> {
           "Select Fitness Level",
           style: AppTheme.lightTheme.textTheme.titleLarge,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: levels.map((level) {
-            return ListTile(
-              title: Text(level),
-              leading: Radio<String>(
-                value: level,
-                groupValue: userData["fitnessLevel"] as String?,
-                onChanged: (value) {
-                  setState(() {
-                    userData["fitnessLevel"] = value;
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-            );
-          }).toList(),
+        content: CustomRadioGroup<String>(
+          value: userData["fitnessLevel"] as String? ?? levels[0],
+          items: levels,
+          onChanged: (value) {
+            setState(() {
+              userData["fitnessLevel"] = value;
+            });
+            Navigator.pop(context);
+          },
+          itemBuilder: (level) => Text(level),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
         ],
       ),
@@ -681,6 +661,11 @@ class _UserProfileSettingsState extends State<UserProfileSettings> {
   }
 
   void _selectUnits() {
+    final List<String> units = [
+      "Metric (kg, cm, km)",
+      "Imperial (lbs, ft, miles)"
+    ];
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -688,43 +673,22 @@ class _UserProfileSettingsState extends State<UserProfileSettings> {
           "Select Units",
           style: AppTheme.lightTheme.textTheme.titleLarge,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text("Metric (kg, cm, km)"),
-              leading: Radio<String>(
-                value: "Metric",
-                groupValue: _selectedUnits,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedUnits = value!;
-                    userData["units"] = value;
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            ListTile(
-              title: Text("Imperial (lbs, ft, miles)"),
-              leading: Radio<String>(
-                value: "Imperial",
-                groupValue: _selectedUnits,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedUnits = value!;
-                    userData["units"] = value;
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          ],
+        content: CustomRadioGroup<String>(
+          value: _selectedUnits == "Metric" ? units[0] : units[1],
+          items: units,
+          onChanged: (value) {
+            setState(() {
+              _selectedUnits = value?.startsWith("Metric") == true ? "Metric" : "Imperial";
+              userData["units"] = _selectedUnits;
+            });
+            Navigator.pop(context);
+          },
+          itemBuilder: (unit) => Text(unit),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
         ],
       ),

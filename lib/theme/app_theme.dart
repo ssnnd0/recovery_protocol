@@ -74,7 +74,7 @@ class AppTheme {
       onSecondaryContainer: onSecondaryLight,
       tertiary: accentLight,
       onTertiary: onPrimaryLight,
-      tertiaryContainer: accentLight.withValues(alpha: 0.1),
+      tertiaryContainer: accentLight.withAlpha(26), // 0.1 opacity
       onTertiaryContainer: accentLight,
       error: errorLight,
       onError: onErrorLight,
@@ -82,7 +82,7 @@ class AppTheme {
       onSurface: onSurfaceLight,
       onSurfaceVariant: textSecondaryLight,
       outline: borderLight,
-      outlineVariant: borderLight.withValues(alpha: 0.5),
+      outlineVariant: borderLight.withAlpha(128), // 0.5 opacity
       shadow: shadowLight,
       scrim: shadowLight,
       inverseSurface: backgroundDark,
@@ -90,30 +90,7 @@ class AppTheme {
       inversePrimary: primaryDark,
     ),
     scaffoldBackgroundColor: backgroundLight,
-    cardColor: surfaceLight,
-    dividerColor: borderLight,
-
-    // AppBar theme for scientific authority
-    appBarTheme: AppBarTheme(
-      backgroundColor: backgroundLight,
-      foregroundColor: textPrimaryLight,
-      elevation: 0,
-      shadowColor: shadowLight,
-      surfaceTintColor: Colors.transparent,
-      titleTextStyle: GoogleFonts.inter(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: textPrimaryLight,
-        letterSpacing: -0.5,
-      ),
-      iconTheme: const IconThemeData(
-        color: textPrimaryLight,
-        size: 24,
-      ),
-    ),
-
-    // Card theme with subtle elevation
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: surfaceLight,
       elevation: 2,
       shadowColor: shadowLight,
@@ -122,6 +99,20 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    tabBarTheme: TabBarThemeData(
+      labelColor: primaryLight,
+      unselectedLabelColor: textSecondaryLight,
+      indicatorColor: primaryLight,
+      indicatorSize: TabBarIndicatorSize.label,
+      labelStyle: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
     ),
 
     // Bottom navigation for adaptive navigation
@@ -263,7 +254,7 @@ class AppTheme {
       }),
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return primaryLight.withValues(alpha: 0.3);
+          return primaryLight.withAlpha(77); // 0.3 opacity
         }
         return borderLight.withValues(alpha: 0.5);
       }),
@@ -312,26 +303,12 @@ class AppTheme {
       ),
     ),
 
-    // Tab bar theme for content organization
-    tabBarTheme: TabBarTheme(
-      labelColor: primaryLight,
-      unselectedLabelColor: textSecondaryLight,
-      indicatorColor: primaryLight,
-      indicatorSize: TabBarIndicatorSize.label,
-      labelStyle: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
-      unselectedLabelStyle: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
+
 
     // Tooltip theme for guidance
     tooltipTheme: TooltipThemeData(
       decoration: BoxDecoration(
-        color: textPrimaryLight.withValues(alpha: 0.9),
+        color: textPrimaryLight.withAlpha(230), // 0.9 opacity
         borderRadius: BorderRadius.circular(8),
       ),
       textStyle: GoogleFonts.inter(
@@ -361,7 +338,7 @@ class AppTheme {
     // Chip theme for tags and filters
     chipTheme: ChipThemeData(
       backgroundColor: surfaceLight,
-      selectedColor: primaryLight.withValues(alpha: 0.1),
+      selectedColor: primaryLight.withAlpha(26), // 0.1 opacity
       disabledColor: borderLight,
       labelStyle: GoogleFonts.inter(
         fontSize: 14,
@@ -396,10 +373,12 @@ class AppTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-    ), dialogTheme: DialogThemeData(backgroundColor: surfaceLight),
+    ),
+
+    dialogTheme: DialogThemeData(backgroundColor: surfaceLight),
   );
 
-  /// Dark theme with same design principles
+  /// Dark theme with Scientific Minimalism approach
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme(
@@ -414,7 +393,7 @@ class AppTheme {
       onSecondaryContainer: onSecondaryDark,
       tertiary: accentDark,
       onTertiary: onPrimaryDark,
-      tertiaryContainer: accentDark.withValues(alpha: 0.2),
+      tertiaryContainer: accentDark.withValues(alpha: 25),
       onTertiaryContainer: accentDark,
       error: errorDark,
       onError: onErrorDark,
@@ -422,7 +401,7 @@ class AppTheme {
       onSurface: onSurfaceDark,
       onSurfaceVariant: textSecondaryDark,
       outline: borderDark,
-      outlineVariant: borderDark.withValues(alpha: 0.5),
+      outlineVariant: borderDark.withAlpha(128),
       shadow: shadowDark,
       scrim: shadowDark,
       inverseSurface: backgroundLight,
@@ -430,26 +409,7 @@ class AppTheme {
       inversePrimary: primaryLight,
     ),
     scaffoldBackgroundColor: backgroundDark,
-    cardColor: surfaceDark,
-    dividerColor: borderDark,
-    appBarTheme: AppBarTheme(
-      backgroundColor: backgroundDark,
-      foregroundColor: textPrimaryDark,
-      elevation: 0,
-      shadowColor: shadowDark,
-      surfaceTintColor: Colors.transparent,
-      titleTextStyle: GoogleFonts.inter(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: textPrimaryDark,
-        letterSpacing: -0.5,
-      ),
-      iconTheme: const IconThemeData(
-        color: textPrimaryDark,
-        size: 24,
-      ),
-    ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: surfaceDark,
       elevation: 2,
       shadowColor: shadowDark,
@@ -459,6 +419,22 @@ class AppTheme {
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     ),
+    tabBarTheme: TabBarThemeData(
+      labelColor: primaryDark,
+      unselectedLabelColor: textSecondaryDark,
+      indicatorColor: primaryDark,
+      indicatorSize: TabBarIndicatorSize.label,
+      labelStyle: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+
+    // Bottom navigation for adaptive navigation
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: surfaceDark,
       selectedItemColor: primaryDark,
@@ -474,6 +450,8 @@ class AppTheme {
         fontWeight: FontWeight.w400,
       ),
     ),
+
+    // Contextual floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: accentDark,
       foregroundColor: onPrimaryDark,
@@ -485,6 +463,8 @@ class AppTheme {
         borderRadius: BorderRadius.circular(16),
       ),
     ),
+
+    // Button themes with confident calm approach
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: onPrimaryDark,
@@ -504,6 +484,7 @@ class AppTheme {
         ),
       ),
     ),
+
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: primaryDark,
@@ -520,6 +501,7 @@ class AppTheme {
         ),
       ),
     ),
+
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: primaryDark,
@@ -535,6 +517,7 @@ class AppTheme {
         ),
       ),
     ),
+
     textTheme: _buildTextTheme(isLight: false),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: surfaceDark,
@@ -585,7 +568,7 @@ class AppTheme {
       }),
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return primaryDark.withValues(alpha: 0.3);
+          return primaryDark.withAlpha(77); // 0.3 opacity
         }
         return borderDark.withValues(alpha: 0.5);
       }),
@@ -628,23 +611,13 @@ class AppTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
-    tabBarTheme: TabBarTheme(
-      labelColor: primaryDark,
-      unselectedLabelColor: textSecondaryDark,
-      indicatorColor: primaryDark,
-      indicatorSize: TabBarIndicatorSize.label,
-      labelStyle: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
-      unselectedLabelStyle: GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
+
+
+
+    // Tooltip theme for guidance
     tooltipTheme: TooltipThemeData(
       decoration: BoxDecoration(
-        color: textPrimaryDark.withValues(alpha: 0.9),
+        color: textPrimaryDark.withAlpha(230), // 0.9 opacity
         borderRadius: BorderRadius.circular(8),
       ),
       textStyle: GoogleFonts.inter(
@@ -654,6 +627,8 @@ class AppTheme {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     ),
+
+    // SnackBar for feedback
     snackBarTheme: SnackBarThemeData(
       backgroundColor: textPrimaryDark,
       contentTextStyle: GoogleFonts.inter(
@@ -668,9 +643,11 @@ class AppTheme {
       ),
       elevation: 4,
     ),
+
+    // Chip theme for tags and filters
     chipTheme: ChipThemeData(
       backgroundColor: surfaceDark,
-      selectedColor: primaryDark.withValues(alpha: 0.2),
+      selectedColor: primaryDark.withAlpha(51), // 0.2 opacity
       disabledColor: borderDark,
       labelStyle: GoogleFonts.inter(
         fontSize: 14,
@@ -687,6 +664,8 @@ class AppTheme {
         side: const BorderSide(color: borderDark),
       ),
     ),
+
+    // List tile theme
     listTileTheme: ListTileThemeData(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       titleTextStyle: GoogleFonts.inter(
@@ -703,7 +682,9 @@ class AppTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-    ), dialogTheme: DialogThemeData(backgroundColor: surfaceDark),
+    ),
+
+    dialogTheme: DialogThemeData(backgroundColor: surfaceDark),
   );
 
   /// Helper method to build text theme with Inter font family
